@@ -1,6 +1,9 @@
 # entrega_modulo_1
+
 ## Links de Git Hub Integrantes del grupo y profe Ricardo Palma
+
 ### Grupo: Los Iraníes
+
 #### Profe https://github.com/ricardorpalma
 #### Enzo Carbone https://github.com/Enzocarbone10
 #### Pedro Farjo https://github.com/pedro-farjo

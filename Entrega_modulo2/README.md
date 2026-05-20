@@ -15,7 +15,7 @@
 |:---------------:|:---------------:|:---------------:|:---------------:|:---------------:|
 |Enzo|Carbone|2616060762|https://github.com/Enzocarbone10/Modulo_2|enzocarbone25@gmail.com|
 |Pedro|Farjo|2615712104|https://github.com/pedro-farjo/modulo_2|pedrofarjo@gmail.com|
-|Ignacio|March|2612416022|https://github.com/IgnacioMarch/modulo_1|nachomarch0303@gmail.com|
+|Ignacio|March|2612416022|https://github.com/IgnacioMarch/Modulo_2|nachomarch0303@gmail.com|
 |Renzo|Martini|2616948567|https://github.com/Renzo-Martini/Modulo-2|renzo.martiniur@gmail.com|
 |Luca|Silioni|2613035542|https://github.com/lucasilioni/modulo-2|lucasilioni05@gmail.com|
 |Lucas|Vega|2616412711|https://github.com/lucassvegaa/modulo_2|lucasvega762@gmail.com|

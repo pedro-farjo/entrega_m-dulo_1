@@ -1,4 +1,4 @@
-# entrega-modulo-2
+# Entrega-modulo-2
 
 ## Links de Git Hub Integrantes del grupo y profe Ricardo Palma
 ### Grupo: Los Iraníes

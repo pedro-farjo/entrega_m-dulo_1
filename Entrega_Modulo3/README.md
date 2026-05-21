@@ -17,5 +17,5 @@
 |Pedro|Farjo|2615712104|https://github.com/pedro-farjo/|pedrofarjo@gmail.com|
 |Ignacio|March|2612416022|https://github.com/IgnacioMarch/|nachomarch0303@gmail.com|
 |Renzo|Martini|2616948567|https://github.com/Renzo-Martini/|renzo.martiniur@gmail.com|
-|Luca|Silioni|2613035542|https://github.com/lucasilioni/|lucasilioni05@gmail.com|
+|Luca|Silioni|2613035542|https://github.com/lucasilioni/modulo-3.git|lucasilioni05@gmail.com|
 |Lucas|Vega|2616412711|https://github.com/lucassvegaa/|lucasvega762@gmail.com|

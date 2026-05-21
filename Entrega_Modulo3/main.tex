@@ -1,0 +1,107 @@
+\documentclass{llncs}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+
+\begin{document}
+
+\title{Simulación y Optimización de una Planta Industrial de Procesamiento de Pistacho mediante SIMUL8}
+\subtitle{Modelado de Eventos Discretos, Evolución del Sistema y Análisis Costo-Beneficio}
+
+\author{Pedro Farjo\inst{1} \and Ignacio March\inst{1} \and Renzo Martini\inst{1} \and Luca Silioni\inst{1} \and Lucas Vega\inst{1}} 
+\institute{Universidad Nacional de Cuyo\\ Facultad de Ingeniería}
+
+\maketitle
+
+\begin{abstract}
+Este informe presenta el diseño, modelado y análisis económico-operativo de una planta de procesamiento y comercialización de pistachos utilizando el software de simulación de eventos discretos SIMUL8. El objetivo principal radica en evaluar la viabilidad financiera y la eficiencia de dos líneas concurrentes que reciben materia prima cosechada desde una fuente única: una rama de procesamiento integral (pelado, selección y envasado) y una rama de procesamiento rápido (selección directa y envasado). A través de un enfoque de aprendizaje iterativo, se integraron la lógica de manufactura, las dinámicas de adquisición de clientes y los parámetros financieros del entorno. Los resultados financieros recolectados sobre una semana tipo de operación (2400 minutos) demuestran la sustentabilidad del equilibrio operativo alcanzado.
+
+\keywords{SIMUL8, Simulación de Eventos Discretos, Optimización Industrial, Agroindustria, Pistacho, Balance Financiero.}
+\end{abstract}
+
+\section{Introducción}
+El diseño de sistemas agroindustriales modernos exige metodologías capaces de predecir el comportamiento dinámico de los procesos antes de su implementación física. Las herramientas de simulación de eventos discretos permiten representar sistemas complejos donde los cambios ocurren en momentos específicos del tiempo, facilitando la identificación de ineficiencias logísticas y operacionales. 
+
+En este módulo, se empleó el software SIMUL8 para modelar de manera integral una planta de procesamiento y venta de pistachos. A diferencia de los análisis de capacidad estáticos tradicionales, este modelo permitió estudiar la concurrencia de flujos, la asignación de recursos humanos limitados y el impacto directo de las ineficiencias operacionales sobre los estados de resultados monetarios integrados (\textit{Income Statement}).
+
+\section{Fundamentos del Entorno de Simulación SIMUL8}
+SIMUL8 se fundamenta en la interacción de componentes básicos orientados a objetos que replican la dinámica de una cadena de valor. Las entidades (\textit{Work Items}) fluyen a través de la infraestructura del modelo de acuerdo con reglas probabilísticas o determinísticas. Los elementos clave utilizados en el desarrollo de esta industria se detallan a continuación:
+\begin{itemize}
+    \item \textbf{Start Centers / Entry Points:} Puntos de generación donde ingresa la materia prima cosechada al sistema bajo una tasa de arribo específica.
+    \item \textbf{Storage Bins / Queues:} Zonas de acumulación pasiva que albergan entidades en espera de ser procesadas, permitiendo medir los niveles de inventario en proceso (WIP).
+    \item \textbf{Work Centers / Puestos de Trabajo:} Unidades operativas activas donde se consume tiempo para transformar, seleccionar o envasar las entidades. Poseen eficiencias, capacidades y costos de uso asociados.
+    \item \textbf{Exit Houses / End Points:} Puntos de salida que contabilizan el egreso de productos terminados, ventas exitosas o pérdidas por descarte del sistema.
+    \item \textbf{Resources / Operarios:} Recursos humanos limitados (6 empleados en total) requeridos por los puestos de trabajo para ejecutar sus operaciones.
+\end{itemize}
+
+\section{Evolución y Proceso de Aprendizaje del Modelo}
+El desarrollo del simulador no fue estático, sino que siguió un proceso de aprendizaje iterativo dividido en fases críticas que permitieron comprender la interacción entre la ingeniería de procesos y la gestión financiera:
+
+\subsection{Fase 1: Modelado de la Línea de Producción}
+Inicialmente, el enfoque se centrón exclusivamente en la lógica física del procesamiento de la materia prima. Se diagramó la entrada única de pistacho cosechado (sin pelar) y su posterior distribución hacia las dos líneas concurrentes. En esta etapa se parametrizó la capacidad de los \textit{Work Centers} (Pelado, Selección y Envasado) y se asignaron los tiempos de ciclo determinísticos. El aprendizaje clave de esta fase consistió en identificar cómo la acumulación de inventario en las colas intermedias (\textit{Queues}) revelaba de forma inmediata los cuellos de botella del sistema físico.
+
+\subsection{Fase 2: Integración de la Adquisición de Clientes y Ventas}
+Una vez estabilizado el flujo de manufactura, el modelo se expandió hacia el eslabón comercial. Se incorporó un puesto de venta efectiva atendido por un empleado fijo. Esto transformó el simulador de un modelo de empuje (\textit{push}) a uno de tracción (\textit{pull}), donde la producción de pistacho procesado debe acoplarse de manera sincrónica con la llegada de la demanda. Se comprendió que una alta eficiencia en la fábrica no genera valor si el puesto de venta se convierte en un cuello de botella o si la tasa de arribo de clientes no es capaz de absorber el \textit{output} de la planta.
+
+\subsection{Fase 3: Parametrización y Optimización Financiera}
+La fase final consistió en la conversión de variables operativas en métricas monetarias. Se introdujeron de forma iterativa los valores de costo financiero: el costo de adquisición de la materia prima (\$50 por unidad), la tarifa corporativa de la mano de obra (\$50 por minuto por empleado) y el precio de venta final (\$5000 por unidad de pistacho procesado). A través de la simulación de diferentes escenarios, se observó cómo pequeñas variaciones en los tiempos de ciclo o el descarte por defectos modificaban drásticamente el balance, transformando una operación que generaba pérdidas en una configuración con utilidades netas positivas.
+
+\section{Modelado de la Planta de Pistacho}
+El sistema desarrollado integra de manera síncrona la cadena productiva con la dinámica comercial de captación de demanda. La materia prima ingresa al sistema mediante una única fuente con una distribución constante (\textit{Fixed}) de 2 minutos y un costo directo de adquisición de \$50 por unidad. Desde este punto de entrada, el flujo se distribuye hacia las dos líneas principales. El personal total de la planta está estrictamente limitado a 6 empleados distribuidos estratégicamente.
+
+\subsection{Estructura de la Línea 1: Procesamiento Integral}
+Esta línea se encarga de acondicionar el pistacho cosechado que requiere la remoción de la cáscara externa. Cuenta con tres fases consecutivas:
+\begin{enumerate}
+    \item \textbf{Pelado:} Puesto operativo dotado de 1 operario, con un tiempo de procesamiento \textit{Fixed} de 8 minutos.
+    \item \textbf{Selección 1:} Inspección de calidad para separar el producto conforme. Cuenta con 1 operario y un tiempo de ciclo de 5 minutos. Debido a la variabilidad de la materia prima, se configuró una lógica de ruteo de salida donde el 10\% de los pistachos defectuosos se descartan y se desvían permanentemente a pérdida.
+    \item \textbf{Envasado 1:} Puesto automatizado asistido por 1 operario que sella el producto en su presentación final bajo un tiempo \textit{Fixed} de 4 minutos.
+\end{enumerate}
+
+\subsection{Estructura de la Línea 2: Procesamiento Rápido}
+Esta línea recibe la fracción de la materia prima que no requiere la etapa inicial de pelado, acelerando el flujo de salida hacia los clientes. Se compone de:
+\begin{enumerate}
+    \item \textbf{Selección 2:} Puesto de control atendido por 1 operario con un tiempo de procesamiento de 6 minutos. Al igual que en la línea 1, se parametrizó una pérdida estocástica del 10\% por unidades defectuosas.
+    \item \textbf{Envasado 2:} Estación operada por 1 operario con un tiempo de procesamiento \textit{Fixed} de 4 minutos, derivando el pistacho apto hacia el inventario de producto terminado.
+\end{enumerate}
+
+\subsection{Unión de Ramas: Puesto de Venta Efectiva}
+Los flujos de pistachos procesados y envasados por ambas líneas convergen de forma síncrona en el Lugar de Ventas. Este nodo comercial clave cuenta con el último empleado de la organización asignado de manera fija (1 operario comercial). El puesto trabaja bajo una distribución de tiempo promedio de 3 minutos por transacción. Cada venta completada despacha la unidad hacia la salida del sistema, generando un ingreso bruto (\textit{Revenue}) de \$5000 por unidad comercializada.
+
+\section{Análisis de Resultados Financieros y Operacionales}
+La simulación fue ejecutada bajo parámetros rigurosos de tiempo de operación, configurados en las propiedades del reloj del sistema (\textit{Clock Properties}) detallados en la Tabla 1. El periodo consolidado de análisis corresponde a una semana tipo de actividad industrial (2400 minutos).
+
+\begin{table}[htbp]
+\centering
+\caption{Parámetros de temporización de la corrida de simulación.}
+\begin{tabular}{ll}
+\toprule
+\textbf{Parámetro del Reloj} & \textbf{Valor Asignado} \\ \midrule
+Unidades de Tiempo & Minutos \\
+Formato de Hora & Tiempo y Día (Clock Face) \\
+Días Laborales Semanales & 5 días \\
+Tiempo de Jornada Diaria & 8 horas (08:00 a 16:00) \\
+Período de Estabilización (\textit{Warm Up}) & 30 minutos \\
+Período de Recolección de Datos & 2370 minutos \\
+\textbf{Tiempo Total de Simulación por Corrida} & \textbf{2400 minutos (1 Semana)} \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Evaluación del Balance de Ingresos y Costos}
+El costo operativo de la mano de obra se calculó de forma exacta a partir de la tarifa corporativa de \$50/min por operario. Para la plantilla global de 6 empleados trabajando en simultáneo durante los 2400 minutos de la semana, el costo fijo de personal asciende a \$720,000. 
+
+Al procesar la corrida en la herramienta financiera integrada de SIMUL8 (\textit{Finance Income Statement}), el sistema arrojó métricas estables que validan la rentabilidad de la configuración actual:
+\begin{itemize}
+    \item \textbf{Costos Totales Operativos:} $\approx \$765,000$ (incluye el costo fijo de la plantilla de personal de \$720,000, la adquisición de materia prima a \$50 por unidad ingresada y el impacto financiero de las pérdidas del 10\% en los puestos de selección).
+    \item \textbf{Ingresos Totales Brutos (\textit{Revenue}):} $\approx \$3,500,000$ (acumulados por la venta efectiva de unidades de pistacho procesado a \$5000 por unidad en el puesto comercial).
+    \item \textbf{\textit{Utilidad Neta Semanal}:} $\approx +\$2,735,000$
+\end{itemize}
+
+El resultado marcadamente superavitario confirma que el precio de mercado del producto procesado (\$5000) absorbe con holgura tanto el costo variable de la materia prima como la estructura de salarios de los 6 operarios. Asimismo, la simulación demostró que la asignación de un empleado exclusivo en el puesto de venta evita que la comercialización actúe como un cuello de botella limitante, maximizando la conversión del inventario en ingresos reales.
+
+\section{Conclusión}
+La modelización de la planta industrial de pistachos en SIMUL8 permitió afianzar conceptos prácticos de investigación operativa y gestión de la producción. A través del diseño evolutivo —que inició con la física de la línea, incorporó la dinámica de clientes y culminó con la optimización financiera— se comprendió que un sistema industrial debe analizarse como un todo interconectado. 
+
+Los balances arrojados por el \textit{Income Statement} validan que la configuración de 6 operarios distribuidos entre las dos líneas concurrentes y el puesto de venta fija es económicamente viable y altamente rentable bajo la estructura de costos parametrizada. Esta metodología dota al ingeniero de herramientas críticas para justificar inversiones de capital, dimensionar la capacidad de planta y mitigar riesgos financieros en entornos agroindustriales complejos.
+
+\end{document}
